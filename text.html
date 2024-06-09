@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations - UdM</title>
+   <style>
+    /* Styles for the formations section */
+#formations {
+    padding: 50px 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.formation.reverse .formation-content {
+    flex-direction: row-reverse;
+}
+
+.formation-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.formation-img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.formation-text {
+    max-width: 600px;
+}
+
+.formation-text h2 {
+    color: green;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.formation-text h3 {
+    color: green;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.formation-text ul {
+    padding-left: 20px;
+    text-align: left; /* Align list text to the left for better readability */
+}
+
+.formation-text ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .formation-content {
+        flex-direction: column;
+    }
+
+    .reverse .formation-content {
+        flex-direction: column;
+    }
+
+    .formation-img {
+        margin: 0 0 20px 0;
+    }
+
+    .reverse .formation-img {
+        margin: 0 0 20px 0;
+    }
+}
+
+/* Animation classes */
+.formation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+   </style>
+</head>
+<body>
+    <!-- Existing content of your page -->
+
+    <section id="formations">
+        <div class="formation">
+            <div class="formation-content">
+                <img src="image/pha.png" alt="Vendeur en Pharmacie" class="formation-img">
+                <div class="formation-text">
+                    <h2>Vendeur en Pharmacie</h2>
+                    <h3>Débouchés</h3>
+                    <ul>
+                        <li>Vendeur en pharmacie et officine</li>
+                        <li>Vendeur en parfumerie</li>
+                        <li>Pharmacie des hôpitaux</li>
+                        <li>Agent entreprises de fabrication d’huile de beauté et de savon</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="formation reverse">
+            <div class="formation-content">
+                <img src="image/delegue.png" alt="Délégué médical" class="formation-img">
+                <div class="formation-text">
+                    <h2>Délégué médical</h2>
+                    <h3>Débouchés</h3>
+                    <ul>
+                        <li>Représentant de laboratoire technico commerciaux</li>
+                        <li>Chargé de vente des médicaments dans les hôpitaux et pharmacies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Existing content of your page -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const formations = document.querySelectorAll('.formation');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    formations.forEach((formation, index) => {
+        observer.observe(formation);
+        // Add delay based on the index
+        formation.style.transitionDelay = `${index * 0.2}s`;
+    });
+});
+
+    </script>
+</body>
+</html>
+
